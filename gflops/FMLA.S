@@ -2,9 +2,15 @@
 
 .text
 .align 5
+#ifdef __APPLE__
+.global _FmlaLoop12
+
+_FmlaLoop12:
+#else
 .global FmlaLoop12
 
 FmlaLoop12:
+#endif
 .loop1:
     fmla v0.4s, v0.4s, v0.4s
     fmla v1.4s, v1.4s, v1.4s
@@ -30,9 +36,15 @@ FmlaLoop12:
 
 .text
 .align 5
+#ifdef __APPLE__
+.global _FmlaLoop12
+
+_FmlaLoop12:
+#else
 .global FmlaLoop12
 
 FmlaLoop12:
+#endif
 push {lr}
 
 .loop1:

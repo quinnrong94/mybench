@@ -5,7 +5,6 @@
 #include <unistd.h>
 #include <time.h>
 #include <math.h>
-#include <ucontext.h>
 #include <string.h>
 #include <fcntl.h>
 #include <errno.h>
