@@ -15,7 +15,7 @@ make
 popd
 
 adb push build64/cpu_test /data/local/tmp
-adb shell "cat /proc/cpuinfo > ${ANDROID_DIR}/log.txt"
+# adb shell "cat /proc/cpuinfo > ${ANDROID_DIR}/log.txt"
 adb shell "cd ${ANDROID_DIR}; ./cpu_test >> log.txt 2>&1"
 adb pull ${ANDROID_DIR}/log.txt tmp.txt
 

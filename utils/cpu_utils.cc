@@ -1,4 +1,7 @@
 #include "cpu_utils.h"
+#include "cpu_info.h"
+
+#include <iostream>
 
 #if defined(__ANDROID__) || defined(__linux__)
 #include <stdint.h>
@@ -6,7 +9,7 @@
 #include <unistd.h>
 #endif
 
-#if defined(__ANDROID__)
+#if defined(__ANDROID__) || defined(__linux__)
 #include <sys/auxv.h>
 #define AT_HWCAP  16
 #define AT_HWCAP2 26
@@ -42,12 +45,19 @@ bool CpuUtils::CpuSupportFp16() {
 
 #ifdef __aarch64__
 
-#ifdef __ANDROID__
+#if defined(__ANDROID__) || defined(__linux__)
     unsigned int hwcap = getauxval(AT_HWCAP);
     fp16arith = hwcap & HWCAP_FPHP &&
                 hwcap & HWCAP_ASIMDHP;
 #endif  // __ANDROID__
 
+#ifdef __ANDROID__
+    if (cpuinfo_arm_android_match_exynos_9810()) {
+        printf(">>>exynos 9810<<<\n");
+        /* Exynos 9810 reports that it supports FP16 compute, but in fact only little cores do */
+        return false;
+    }
+#endif
 
 #ifdef __IOS__
     unsigned int cpu_family = 0;

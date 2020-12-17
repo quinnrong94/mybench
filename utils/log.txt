@@ -1,543 +1,65 @@
-Processor	: AArch64 Processor rev 0 (aarch64)
-processor	: 0
-BogoMIPS	: 3.84
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp
-CPU implementer	: 0x41
-CPU architecture: 8
-CPU variant	: 0x1
-CPU part	: 0xd05
-CPU revision	: 0
-
-processor	: 1
-BogoMIPS	: 3.84
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp
-CPU implementer	: 0x41
-CPU architecture: 8
-CPU variant	: 0x1
-CPU part	: 0xd05
-CPU revision	: 0
-
-processor	: 2
-BogoMIPS	: 3.84
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp
-CPU implementer	: 0x41
-CPU architecture: 8
-CPU variant	: 0x1
-CPU part	: 0xd05
-CPU revision	: 0
-
-processor	: 3
-BogoMIPS	: 3.84
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp
-CPU implementer	: 0x41
-CPU architecture: 8
-CPU variant	: 0x1
-CPU part	: 0xd05
-CPU revision	: 0
-
-processor	: 4
-BogoMIPS	: 3.84
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp
-CPU implementer	: 0x48
-CPU architecture: 8
-CPU variant	: 0x1
-CPU part	: 0xd40
-CPU revision	: 0
-
-processor	: 5
-BogoMIPS	: 3.84
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp
-CPU implementer	: 0x48
-CPU architecture: 8
-CPU variant	: 0x1
-CPU part	: 0xd40
-CPU revision	: 0
-
-processor	: 6
-BogoMIPS	: 3.84
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp
-CPU implementer	: 0x48
-CPU architecture: 8
-CPU variant	: 0x1
-CPU part	: 0xd40
-CPU revision	: 0
-
-processor	: 7
-BogoMIPS	: 3.84
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp
-CPU implementer	: 0x48
-CPU architecture: 8
-CPU variant	: 0x1
-CPU part	: 0xd40
-CPU revision	: 0
-
-Hardware	: Hisilicon Kirin980
->> support fp16
-
-Processor	: AArch64 Processor rev 13 (aarch64)
-processor	: 0
-BogoMIPS	: 38.40
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp
-CPU implementer	: 0x51
-CPU architecture: 8
-CPU variant	: 0x7
-CPU part	: 0x803
-CPU revision	: 12
-
-processor	: 1
-BogoMIPS	: 38.40
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp
-CPU implementer	: 0x51
-CPU architecture: 8
-CPU variant	: 0x7
-CPU part	: 0x803
-CPU revision	: 12
-
-processor	: 2
-BogoMIPS	: 38.40
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp
-CPU implementer	: 0x51
-CPU architecture: 8
-CPU variant	: 0x7
-CPU part	: 0x803
-CPU revision	: 12
-
-processor	: 3
-BogoMIPS	: 38.40
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp
-CPU implementer	: 0x51
-CPU architecture: 8
-CPU variant	: 0x7
-CPU part	: 0x803
-CPU revision	: 12
-
-processor	: 4
-BogoMIPS	: 38.40
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp
-CPU implementer	: 0x51
-CPU architecture: 8
-CPU variant	: 0x7
-CPU part	: 0x803
-CPU revision	: 12
-
-processor	: 5
-BogoMIPS	: 38.40
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp
-CPU implementer	: 0x51
-CPU architecture: 8
-CPU variant	: 0x7
-CPU part	: 0x803
-CPU revision	: 12
-
-processor	: 6
-BogoMIPS	: 38.40
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp
-CPU implementer	: 0x51
-CPU architecture: 8
-CPU variant	: 0x6
-CPU part	: 0x802
-CPU revision	: 13
-
-processor	: 7
-BogoMIPS	: 38.40
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp
-CPU implementer	: 0x51
-CPU architecture: 8
-CPU variant	: 0x6
-CPU part	: 0x802
-CPU revision	: 13
-
-Hardware	: Qualcomm Technologies, Inc SDM670
->> support fp16
-
-Processor	: AArch64 Processor rev 4 (aarch64)
-processor	: 0
-BogoMIPS	: 38.40
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32
-CPU implementer	: 0x51
-CPU architecture: 8
-CPU variant	: 0xa
-CPU part	: 0x801
-CPU revision	: 4
-
-processor	: 1
-BogoMIPS	: 38.40
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32
-CPU implementer	: 0x51
-CPU architecture: 8
-CPU variant	: 0xa
-CPU part	: 0x801
-CPU revision	: 4
-
-processor	: 2
-BogoMIPS	: 38.40
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32
-CPU implementer	: 0x51
-CPU architecture: 8
-CPU variant	: 0xa
-CPU part	: 0x801
-CPU revision	: 4
-
-processor	: 3
-BogoMIPS	: 38.40
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32
-CPU implementer	: 0x51
-CPU architecture: 8
-CPU variant	: 0xa
-CPU part	: 0x801
-CPU revision	: 4
-
-processor	: 4
-BogoMIPS	: 38.40
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32
-CPU implementer	: 0x51
-CPU architecture: 8
-CPU variant	: 0xa
-CPU part	: 0x800
-CPU revision	: 2
-
-processor	: 5
-BogoMIPS	: 38.40
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32
-CPU implementer	: 0x51
-CPU architecture: 8
-CPU variant	: 0xa
-CPU part	: 0x800
-CPU revision	: 2
-
-processor	: 6
-BogoMIPS	: 38.40
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32
-CPU implementer	: 0x51
-CPU architecture: 8
-CPU variant	: 0xa
-CPU part	: 0x800
-CPU revision	: 2
-
-processor	: 7
-BogoMIPS	: 38.40
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32
-CPU implementer	: 0x51
-CPU architecture: 8
-CPU variant	: 0xa
-CPU part	: 0x800
-CPU revision	: 2
-
-Hardware	: Qualcomm Technologies, Inc SDM660
+ro_product_board: universal9810
+ro_board_platform: exynos5
+ro_mediatek_platform: 
+ro_arch: exynos9810
+ro_chipname: exynos9810
+ro_hardware_chipname: 
+vender 1, 1, 9810
+>>>exynos 9810<<<
 >> do not support fp16
 
-Processor	: AArch64 Processor rev 4 (aarch64)
-processor	: 0
-BogoMIPS	: 3.84
-Features	: fp asimd evtstrm aes pmull crc32
-CPU implementer	: 0x41
-CPU architecture: 8
-CPU variant	: 0x0
-CPU part	: 0xd03
-CPU revision	: 4
-
-processor	: 1
-BogoMIPS	: 3.84
-Features	: fp asimd evtstrm aes pmull crc32
-CPU implementer	: 0x41
-CPU architecture: 8
-CPU variant	: 0x0
-CPU part	: 0xd03
-CPU revision	: 4
-
-processor	: 2
-BogoMIPS	: 3.84
-Features	: fp asimd evtstrm aes pmull crc32
-CPU implementer	: 0x41
-CPU architecture: 8
-CPU variant	: 0x0
-CPU part	: 0xd03
-CPU revision	: 4
-
-processor	: 3
-BogoMIPS	: 3.84
-Features	: fp asimd evtstrm aes pmull crc32
-CPU implementer	: 0x41
-CPU architecture: 8
-CPU variant	: 0x0
-CPU part	: 0xd03
-CPU revision	: 4
-
-processor	: 4
-BogoMIPS	: 3.84
-Features	: fp asimd evtstrm aes pmull crc32
-CPU implementer	: 0x41
-CPU architecture: 8
-CPU variant	: 0x0
-CPU part	: 0xd03
-CPU revision	: 4
-
-processor	: 5
-BogoMIPS	: 3.84
-Features	: fp asimd evtstrm aes pmull crc32
-CPU implementer	: 0x41
-CPU architecture: 8
-CPU variant	: 0x0
-CPU part	: 0xd03
-CPU revision	: 4
-
-processor	: 6
-BogoMIPS	: 3.84
-Features	: fp asimd evtstrm aes pmull crc32
-CPU implementer	: 0x41
-CPU architecture: 8
-CPU variant	: 0x0
-CPU part	: 0xd03
-CPU revision	: 4
-
-processor	: 7
-BogoMIPS	: 3.84
-Features	: fp asimd evtstrm aes pmull crc32
-CPU implementer	: 0x41
-CPU architecture: 8
-CPU variant	: 0x0
-CPU part	: 0xd03
-CPU revision	: 4
-
-畅享7S 高配版
+proc_cpuinfo_hardware: 
+ro_product_board: universal9810
+ro_board_platform: exynos5
+ro_mediatek_platform: 
+ro_arch: exynos9810
+ro_chipname: exynos9810
+ro_hardware_chipname: 
+vender 1, 1, 9810
+>>>exynos 9810<<<
 >> do not support fp16
 
-processor	: 0
-model name	: ARMv7 Processor rev 4 (v7l)
-BogoMIPS	: 38.40
-Features	: half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm aes pmull sha1 sha2 crc32 
-CPU implementer	: 0x41
-CPU architecture: 7
-CPU variant	: 0x0
-CPU part	: 0xd03
-CPU revision	: 4
+proc_cpuinfo_hardware: fp asimd evtstrm aes pmull sha1 sha2 crc32 fphp asimdhp
+ro_product_board: universal9810
+ro_board_platform: exynos5
+ro_mediatek_platform: 
+ro_arch: exynos9810
+ro_chipname: exynos9810
+ro_hardware_chipname: 
+vender 1, 1, 9810
+>>>exynos 9810<<<
+>> do not support fp16
 
-processor	: 1
-model name	: ARMv7 Processor rev 4 (v7l)
-BogoMIPS	: 38.40
-Features	: half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm aes pmull sha1 sha2 crc32 
-CPU implementer	: 0x41
-CPU architecture: 7
-CPU variant	: 0x0
-CPU part	: 0xd03
-CPU revision	: 4
+proc_cpuinfo_hardware: 
+ro_product_board: universal9810
+ro_board_platform: exynos5
+ro_mediatek_platform: 
+ro_arch: exynos9810
+ro_chipname: exynos9810
+ro_hardware_chipname: 
+vender 1, 1, 9810
+>>>exynos 9810<<<
+>> do not support fp16
 
-processor	: 2
-model name	: ARMv7 Processor rev 4 (v7l)
-BogoMIPS	: 38.40
-Features	: half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm aes pmull sha1 sha2 crc32 
-CPU implementer	: 0x41
-CPU architecture: 7
-CPU variant	: 0x0
-CPU part	: 0xd03
-CPU revision	: 4
+proc_cpuinfo_hardware: 
+ro_product_board: universal9810
+ro_board_platform: exynos5
+ro_mediatek_platform: 
+ro_arch: exynos9810
+ro_chipname: exynos9810
+ro_hardware_chipname: 
+vender 1, 1, 9810
+>>>exynos 9810<<<
+>> do not support fp16
 
-processor	: 3
-model name	: ARMv7 Processor rev 4 (v7l)
-BogoMIPS	: 38.40
-Features	: half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm aes pmull sha1 sha2 crc32 
-CPU implementer	: 0x41
-CPU architecture: 7
-CPU variant	: 0x0
-CPU part	: 0xd03
-CPU revision	: 4
-
-processor	: 4
-model name	: ARMv7 Processor rev 4 (v7l)
-BogoMIPS	: 38.40
-Features	: half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm aes pmull sha1 sha2 crc32 
-CPU implementer	: 0x41
-CPU architecture: 7
-CPU variant	: 0x0
-CPU part	: 0xd03
-CPU revision	: 4
-
-processor	: 5
-model name	: ARMv7 Processor rev 4 (v7l)
-BogoMIPS	: 38.40
-Features	: half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm aes pmull sha1 sha2 crc32 
-CPU implementer	: 0x41
-CPU architecture: 7
-CPU variant	: 0x0
-CPU part	: 0xd03
-CPU revision	: 4
-
-processor	: 6
-model name	: ARMv7 Processor rev 4 (v7l)
-BogoMIPS	: 38.40
-Features	: half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm aes pmull sha1 sha2 crc32 
-CPU implementer	: 0x41
-CPU architecture: 7
-CPU variant	: 0x0
-CPU part	: 0xd03
-CPU revision	: 4
-
-processor	: 7
-model name	: ARMv7 Processor rev 4 (v7l)
-BogoMIPS	: 38.40
-Features	: half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm aes pmull sha1 sha2 crc32 
-CPU implementer	: 0x41
-CPU architecture: 7
-CPU variant	: 0x0
-CPU part	: 0xd03
-CPU revision	: 4
-
-Hardware	: Qualcomm Technologies, Inc MSM8940
-Revision	: 0000
-Serial		: 0000000000000000
-Processor	: ARMv7 Processor rev 4 (v7l)
-
-畅享7 Plus
-/system/bin/sh: ./cpu_test: not executable: 64-bit ELF file
-Processor	: AArch64 Processor rev 14 (aarch64)
-processor	: 0
-BogoMIPS	: 38.40
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop
-CPU implementer	: 0x51
-CPU architecture: 8
-CPU variant	: 0xd
-CPU part	: 0x805
-CPU revision	: 14
-
-processor	: 1
-BogoMIPS	: 38.40
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop
-CPU implementer	: 0x51
-CPU architecture: 8
-CPU variant	: 0xd
-CPU part	: 0x805
-CPU revision	: 14
-
-processor	: 2
-BogoMIPS	: 38.40
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop
-CPU implementer	: 0x51
-CPU architecture: 8
-CPU variant	: 0xd
-CPU part	: 0x805
-CPU revision	: 14
-
-processor	: 3
-BogoMIPS	: 38.40
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop
-CPU implementer	: 0x51
-CPU architecture: 8
-CPU variant	: 0xd
-CPU part	: 0x805
-CPU revision	: 14
-
-processor	: 4
-BogoMIPS	: 38.40
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop
-CPU implementer	: 0x51
-CPU architecture: 8
-CPU variant	: 0xd
-CPU part	: 0x804
-CPU revision	: 14
-
-processor	: 5
-BogoMIPS	: 38.40
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop
-CPU implementer	: 0x51
-CPU architecture: 8
-CPU variant	: 0xd
-CPU part	: 0x804
-CPU revision	: 14
-
-processor	: 6
-BogoMIPS	: 38.40
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop
-CPU implementer	: 0x51
-CPU architecture: 8
-CPU variant	: 0xd
-CPU part	: 0x804
-CPU revision	: 14
-
-processor	: 7
-BogoMIPS	: 38.40
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop
-CPU implementer	: 0x51
-CPU architecture: 8
-CPU variant	: 0xd
-CPU part	: 0x804
-CPU revision	: 14
-
-Hardware	: Qualcomm Technologies, Inc SM8150
->> support fp16
-
-Processor	: AArch64 Processor rev 12 (aarch64)
-processor	: 0
-BogoMIPS	: 38.40
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp
-CPU implementer	: 0x51
-CPU architecture: 8
-CPU variant	: 0x7
-CPU part	: 0x803
-CPU revision	: 12
-
-processor	: 1
-BogoMIPS	: 38.40
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp
-CPU implementer	: 0x51
-CPU architecture: 8
-CPU variant	: 0x7
-CPU part	: 0x803
-CPU revision	: 12
-
-processor	: 2
-BogoMIPS	: 38.40
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp
-CPU implementer	: 0x51
-CPU architecture: 8
-CPU variant	: 0x7
-CPU part	: 0x803
-CPU revision	: 12
-
-processor	: 3
-BogoMIPS	: 38.40
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp
-CPU implementer	: 0x51
-CPU architecture: 8
-CPU variant	: 0x7
-CPU part	: 0x803
-CPU revision	: 12
-
-processor	: 4
-BogoMIPS	: 38.40
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp
-CPU implementer	: 0x51
-CPU architecture: 8
-CPU variant	: 0x7
-CPU part	: 0x803
-CPU revision	: 12
-
-processor	: 5
-BogoMIPS	: 38.40
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp
-CPU implementer	: 0x51
-CPU architecture: 8
-CPU variant	: 0x7
-CPU part	: 0x803
-CPU revision	: 12
-
-processor	: 6
-BogoMIPS	: 38.40
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp
-CPU implementer	: 0x51
-CPU architecture: 8
-CPU variant	: 0x6
-CPU part	: 0x802
-CPU revision	: 13
-
-processor	: 7
-BogoMIPS	: 38.40
-Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp
-CPU implementer	: 0x51
-CPU architecture: 8
-CPU variant	: 0x6
-CPU part	: 0x802
-CPU revision	: 13
-
-Hardware	: Qualcomm Technologies, Inc SDM710
->> support fp16
+proc_cpuinfo_hardware: 
+ro_product_board: universal9810
+ro_board_platform: exynos5
+ro_mediatek_platform: 
+ro_arch: exynos9810
+ro_chipname: exynos9810
+ro_hardware_chipname: 
+vender 1, 1, 9810
+>>>exynos 9810<<<
+>> do not support fp16
 
