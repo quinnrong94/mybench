@@ -1,65 +1,12 @@
-ro_product_board: universal9810
-ro_board_platform: exynos5
+/system/bin/sh: ./cpu_test: inaccessible or not found
+/system/bin/sh: ./cpu_test: inaccessible or not found
+proc_cpuinfo_hardware: Hisilicon Kirin980
+ro_product_board: VOG
+ro_board_platform: kirin980
 ro_mediatek_platform: 
-ro_arch: exynos9810
-ro_chipname: exynos9810
+ro_arch: 
+ro_chipname: 
 ro_hardware_chipname: 
-vender 1, 1, 9810
->>>exynos 9810<<<
->> do not support fp16
-
-proc_cpuinfo_hardware: 
-ro_product_board: universal9810
-ro_board_platform: exynos5
-ro_mediatek_platform: 
-ro_arch: exynos9810
-ro_chipname: exynos9810
-ro_hardware_chipname: 
-vender 1, 1, 9810
->>>exynos 9810<<<
->> do not support fp16
-
-proc_cpuinfo_hardware: fp asimd evtstrm aes pmull sha1 sha2 crc32 fphp asimdhp
-ro_product_board: universal9810
-ro_board_platform: exynos5
-ro_mediatek_platform: 
-ro_arch: exynos9810
-ro_chipname: exynos9810
-ro_hardware_chipname: 
-vender 1, 1, 9810
->>>exynos 9810<<<
->> do not support fp16
-
-proc_cpuinfo_hardware: 
-ro_product_board: universal9810
-ro_board_platform: exynos5
-ro_mediatek_platform: 
-ro_arch: exynos9810
-ro_chipname: exynos9810
-ro_hardware_chipname: 
-vender 1, 1, 9810
->>>exynos 9810<<<
->> do not support fp16
-
-proc_cpuinfo_hardware: 
-ro_product_board: universal9810
-ro_board_platform: exynos5
-ro_mediatek_platform: 
-ro_arch: exynos9810
-ro_chipname: exynos9810
-ro_hardware_chipname: 
-vender 1, 1, 9810
->>>exynos 9810<<<
->> do not support fp16
-
-proc_cpuinfo_hardware: 
-ro_product_board: universal9810
-ro_board_platform: exynos5
-ro_mediatek_platform: 
-ro_arch: exynos9810
-ro_chipname: exynos9810
-ro_hardware_chipname: 
-vender 1, 1, 9810
->>>exynos 9810<<<
->> do not support fp16
+vender 0, 0, 0
+>> support fp16
 

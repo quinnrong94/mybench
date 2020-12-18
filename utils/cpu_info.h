@@ -1,7 +1,7 @@
 #ifndef CPU_INFO_H_
 #define CPU_INFO_H_
 
-#include <cstdint>
+#include <stdint.h>
 
 #ifdef __ANDROID__
 
