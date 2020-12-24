@@ -4,22 +4,30 @@ set -x
 
 ANDROID_DIR=/data/local/tmp
 
-rm -rf build64
-mkdir build64
+function run() {
+    sys=$1
+    ABI=$2
 
-pushd build64
-cmake .. \
-    -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK/build/cmake/android.toolchain.cmake \
-    -DANDROID_ABI="arm64-v8a"
-make
-popd
+    rm -rf build${sys}
+    mkdir build${sys}
 
-adb push build64/cpu_test /data/local/tmp
-# adb shell "cat /proc/cpuinfo > ${ANDROID_DIR}/log.txt"
-adb shell "cd ${ANDROID_DIR}; ./cpu_test >> log.txt 2>&1"
-adb pull ${ANDROID_DIR}/log.txt tmp.txt
+    pushd build${sys}
+    cmake .. \
+        -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK_15c/build/cmake/android.toolchain.cmake \
+        -DANDROID_ABI=${ABI} \
+        -DBUILD_FOR_ANDROID_COMMAND=true
+    make
+    popd
 
-cat tmp.txt
+    adb push build${sys}/cpu_test /data/local/tmp/cpu_test_${sys}
+    adb shell "cd ${ANDROID_DIR}; ./cpu_test_${sys} > log_${sys}.txt 2>&1"
+    adb pull ${ANDROID_DIR}/log_${sys}.txt tmp.txt
 
-cat tmp.txt >> log.txt
-rm tmp.txt
+    cat tmp.txt
+
+    cat tmp.txt >> log_${sys}.txt
+    rm tmp.txt
+}
+
+run 64 arm64-v8a
+run 32 armeabi-v7a
