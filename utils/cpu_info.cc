@@ -1,40 +1,35 @@
 #include "cpu_info.h"
 
-#include <iostream>
-
 #ifdef __ANDROID__
 
 #include <alloca.h>
 #include <fcntl.h>
 #include <string.h>
-#include <unistd.h>
 #include <sys/system_properties.h>
+#include <unistd.h>
 
 #define BUFFER_SIZE 1024
 
-typedef bool (*cpuinfo_line_callback)(const char*, const char*, void*, uint64_t);
+typedef bool (*cpuinfo_line_callback)(const char *, const char *, void *, uint64_t);
 
+/* Only contain hardware and midr now. */
 struct proc_cpuinfo_parser_state {
-    char* hardware;
+    char *hardware;
     struct cpuinfo_arm_linux_processor *processor;
 };
 
 inline static uint32_t midr_set_part(uint32_t midr, uint32_t part) {
-    return (midr & ~CPUINFO_ARM_MIDR_PART_MASK) |
-        ((part << CPUINFO_ARM_MIDR_PART_OFFSET) & CPUINFO_ARM_MIDR_PART_MASK);
+    return (midr & ~CPUINFO_ARM_MIDR_PART_MASK) | ((part << CPUINFO_ARM_MIDR_PART_OFFSET) & CPUINFO_ARM_MIDR_PART_MASK);
 }
 
 inline static uint32_t midr_set_implementer(uint32_t midr, uint32_t implementer) {
     return (midr & ~CPUINFO_ARM_MIDR_IMPLEMENTER_MASK) |
-        ((implementer << CPUINFO_ARM_MIDR_IMPLEMENTER_OFFSET) & CPUINFO_ARM_MIDR_IMPLEMENTER_MASK);
+           ((implementer << CPUINFO_ARM_MIDR_IMPLEMENTER_OFFSET) & CPUINFO_ARM_MIDR_IMPLEMENTER_MASK);
 }
 
-static void parse_cpu_part(
-    const char* cpu_part_start,
-    const char* cpu_part_end,
-    struct cpuinfo_arm_linux_processor *processor)
-{
-    const size_t cpu_part_length = (size_t) (cpu_part_end - cpu_part_start);
+static void parse_cpu_part(const char *cpu_part_start, const char *cpu_part_end,
+                           struct cpuinfo_arm_linux_processor *processor) {
+    const size_t cpu_part_length = (size_t)(cpu_part_end - cpu_part_start);
 
     /*
      * CPU part should contain hex prefix (0x) and one to three hex digits.
@@ -54,14 +49,14 @@ static void parse_cpu_part(
 
     /* Verify that characters after hex prefix are hexadecimal digits and decode them */
     uint32_t cpu_part = 0;
-    for (const char* digit_ptr = cpu_part_start + 2; digit_ptr != cpu_part_end; digit_ptr++) {
+    for (const char *digit_ptr = cpu_part_start + 2; digit_ptr != cpu_part_end; digit_ptr++) {
         const char digit_char = *digit_ptr;
         uint32_t digit;
         if (digit_char >= '0' && digit_char <= '9') {
             digit = digit_char - '0';
-        } else if ((uint32_t) (digit_char - 'A') < 6) {
+        } else if ((uint32_t)(digit_char - 'A') < 6) {
             digit = 10 + (digit_char - 'A');
-        } else if ((uint32_t) (digit_char - 'a') < 6) {
+        } else if ((uint32_t)(digit_char - 'a') < 6) {
             digit = 10 + (digit_char - 'a');
         } else {
             return;
@@ -72,11 +67,8 @@ static void parse_cpu_part(
     processor->midr = midr_set_part(processor->midr, cpu_part);
 }
 
-static void parse_cpu_implementer(
-    const char* cpu_implementer_start,
-    const char* cpu_implementer_end,
-    struct cpuinfo_arm_linux_processor *processor)
-{
+static void parse_cpu_implementer(const char *cpu_implementer_start, const char *cpu_implementer_end,
+                                  struct cpuinfo_arm_linux_processor *processor) {
     const size_t cpu_implementer_length = cpu_implementer_end - cpu_implementer_start;
 
     /*
@@ -101,14 +93,14 @@ static void parse_cpu_implementer(
 
     /* Verify that characters after hex prefix are hexadecimal digits and decode them */
     uint32_t cpu_implementer = 0;
-    for (const char* digit_ptr = cpu_implementer_start + 2; digit_ptr != cpu_implementer_end; digit_ptr++) {
+    for (const char *digit_ptr = cpu_implementer_start + 2; digit_ptr != cpu_implementer_end; digit_ptr++) {
         const char digit_char = *digit_ptr;
         uint32_t digit;
         if (digit_char >= '0' && digit_char <= '9') {
             digit = digit_char - '0';
-        } else if ((uint32_t) (digit_char - 'A') < 6) {
+        } else if ((uint32_t)(digit_char - 'A') < 6) {
             digit = 10 + (digit_char - 'A');
-        } else if ((uint32_t) (digit_char - 'a') < 6) {
+        } else if ((uint32_t)(digit_char - 'a') < 6) {
             digit = 10 + (digit_char - 'a');
         } else {
             return;
@@ -119,39 +111,17 @@ static void parse_cpu_implementer(
     processor->midr = midr_set_implementer(processor->midr, cpu_implementer);
 }
 
-/*
- *	Decode a single line of /proc/cpuinfo information.
- *	Lines have format <words-with-spaces>[ ]*:[ ]<space-separated words>
- *	An example of /proc/cpuinfo (from Pandaboard-ES):
- *
- *		Processor       : ARMv7 Processor rev 10 (v7l)
- *		processor       : 0
- *		BogoMIPS        : 1392.74
- *
- *		processor       : 1
- *		BogoMIPS        : 1363.33
- *
- *		Features        : swp half thumb fastmult vfp edsp thumbee neon vfpv3
- *		CPU implementer : 0x41
- *		CPU architecture: 7
- *		CPU variant     : 0x2
- *		CPU part        : 0xc09
- *		CPU revision    : 10
- *
- *		Hardware        : OMAP4 Panda board
- *		Revision        : 0020
- *		Serial          : 0000000000000000
- */
-/* Only decode Hardware now*/
-static bool parse_line(const char* line_start, const char* line_end, struct proc_cpuinfo_parser_state *state, uint64_t line_number)
-{
+/* Decode a single line of /proc/cpuinfo information. */
+/* Only decode Hardware now. */
+static bool parse_line(const char *line_start, const char *line_end, struct proc_cpuinfo_parser_state *state,
+                       uint64_t line_number) {
     /* Empty line. Skip. */
     if (line_start == line_end) {
         return true;
     }
 
     /* Search for ':' on the line. */
-    const char* separator = line_start;
+    const char *separator = line_start;
     for (; separator != line_end; separator++) {
         if (*separator == ':') {
             break;
@@ -163,7 +133,7 @@ static bool parse_line(const char* line_start, const char* line_end, struct proc
     }
 
     /* Skip trailing spaces in key part. */
-    const char* key_end = separator;
+    const char *key_end = separator;
     for (; key_end != line_start; key_end--) {
         if (key_end[-1] != ' ' && key_end[-1] != '\t') {
             break;
@@ -175,7 +145,7 @@ static bool parse_line(const char* line_start, const char* line_end, struct proc
     }
 
     /* Skip leading spaces in value part. */
-    const char* value_start = separator + 1;
+    const char *value_start = separator + 1;
     for (; value_start != line_end; value_start++) {
         if (*value_start != ' ') {
             break;
@@ -187,7 +157,7 @@ static bool parse_line(const char* line_start, const char* line_end, struct proc
     }
 
     /* Skip trailing spaces in value part (if any) */
-    const char* value_end = line_end;
+    const char *value_end = line_end;
     for (; value_end != value_start; value_end--) {
         if (value_end[-1] != ' ') {
             break;
@@ -221,18 +191,18 @@ static bool parse_line(const char* line_start, const char* line_end, struct proc
     return true;
 }
 
-#define CLEAN_UP        \
-    if (file != -1) {   \
-        close(file);    \
-        file = -1;      \
-    }                   \
+#define CLEAN_UP                                                                                                       \
+    if (file != -1) {                                                                                                  \
+        close(file);                                                                                                   \
+        file = -1;                                                                                                     \
+    }                                                                                                                  \
     return status;
 
-bool cpuinfo_linux_parse_multiline_file(const char* filename, size_t buffer_size, cpuinfo_line_callback callback, void* context)
-{
-    int file = -1;
-    bool status = false;
-    char* buffer = (char*) alloca(buffer_size);
+bool cpuinfo_linux_parse_multiline_file(const char *filename, size_t buffer_size, cpuinfo_line_callback callback,
+                                        void *context) {
+    int file     = -1;
+    bool status  = false;
+    char *buffer = (char *)alloca(buffer_size);
 
     file = open(filename, O_RDONLY);
     if (file == -1) {
@@ -240,29 +210,29 @@ bool cpuinfo_linux_parse_multiline_file(const char* filename, size_t buffer_size
     }
 
     /* Only used for error reporting */
-    size_t position = 0;
-    uint64_t line_number = 1;
-    const char* buffer_end = &buffer[buffer_size];
-    char* data_start = buffer;
+    size_t position        = 0;
+    uint64_t line_number   = 1;
+    const char *buffer_end = &buffer[buffer_size];
+    char *data_start       = buffer;
     ssize_t bytes_read;
     do {
-        bytes_read = read(file, data_start, (size_t) (buffer_end - data_start));
+        bytes_read = read(file, data_start, (size_t)(buffer_end - data_start));
         if (bytes_read < 0) {
             CLEAN_UP;
         }
 
-        position += (size_t) bytes_read;
-        const char* data_end = data_start + (size_t) bytes_read;
-        const char* line_start = buffer;
+        position += (size_t)bytes_read;
+        const char *data_end   = data_start + (size_t)bytes_read;
+        const char *line_start = buffer;
 
         if (bytes_read == 0) {
             /* No more data in the file: process the remaining text in the buffer as a single entry */
-            const char* line_end = data_end;
+            const char *line_end = data_end;
             if (!callback(line_start, line_end, context, line_number)) {
                 CLEAN_UP;
             }
         } else {
-            const char* line_end;
+            const char *line_end;
             do {
                 /* Find the end of the entry, as indicated by newline character ('\n') */
                 for (line_end = line_start; line_end != data_end; line_end++) {
@@ -284,7 +254,7 @@ bool cpuinfo_linux_parse_multiline_file(const char* filename, size_t buffer_size
             } while (line_end != data_end);
 
             /* Move remaining partial line data at the end to the beginning of the buffer */
-            const size_t line_length = (size_t) (line_end - line_start);
+            const size_t line_length = (size_t)(line_end - line_start);
             memmove(buffer, line_start, line_length);
             data_start = &buffer[line_length];
         }
@@ -299,13 +269,12 @@ bool cpuinfo_linux_parse_multiline_file(const char* filename, size_t buffer_size
 #undef CLEAN_UP
 
 /* Only get hardware and midr now*/
-bool cpuinfo_arm_linux_parse_proc_cpuinfo(char *hardware, struct cpuinfo_arm_linux_processor *processor)
-{
+bool cpuinfo_arm_linux_parse_proc_cpuinfo(char *hardware, struct cpuinfo_arm_linux_processor *processor) {
     struct proc_cpuinfo_parser_state state = {
-        .hardware = hardware,
+        .hardware  = hardware,
         .processor = processor,
     };
-    return cpuinfo_linux_parse_multiline_file("/proc/cpuinfo", BUFFER_SIZE, (cpuinfo_line_callback) parse_line, &state);
+    return cpuinfo_linux_parse_multiline_file("/proc/cpuinfo", BUFFER_SIZE, (cpuinfo_line_callback)parse_line, &state);
 }
 
 void cpuinfo_arm_android_parse_properties(struct cpuinfo_android_properties *properties) {
@@ -328,12 +297,12 @@ enum cpuinfo_android_chipset_property {
     cpuinfo_android_chipset_property_max,
 };
 
-static inline uint32_t load_u32le(const void* ptr) {
-    return *((const uint32_t*)ptr);
+static inline uint32_t load_u32le(const void *ptr) {
+    return *((const uint32_t *)ptr);
 }
 
-static inline uint16_t load_u16le(const void* ptr) {
-    return *((const uint16_t*) ptr);
+static inline uint16_t load_u16le(const void *ptr) {
+    return *((const uint16_t *)ptr);
 }
 
 /**
@@ -346,8 +315,7 @@ static inline uint16_t load_u16le(const void* ptr) {
  *
  * @returns true if signature matched, false otherwise.
  */
-static bool match_samsung_exynos(const char* start, const char* end, struct cpuinfo_arm_chipset *chipset)
-{
+static bool match_samsung_exynos(const char *start, const char *end, struct cpuinfo_arm_chipset *chipset) {
     /*
      * Expect at 18-19 symbols:
      * - "Samsung" (7 symbols) + space + "Exynos" (6 symbols) + optional space 4-digit model number
@@ -383,7 +351,7 @@ static bool match_samsung_exynos(const char* start, const char* end, struct cpui
         return false;
     }
 
-    const char* pos = start + 14;
+    const char *pos = start + 14;
 
     /* There can be a space ' ' following the "Exynos" string */
     if (*pos == ' ') {
@@ -398,7 +366,7 @@ static bool match_samsung_exynos(const char* start, const char* end, struct cpui
     /* Validate and parse 4-digit model number */
     uint32_t model = 0;
     for (uint32_t i = 0; i < 4; i++) {
-        const uint32_t digit = (uint32_t) (uint8_t) (*pos++) - '0';
+        const uint32_t digit = (uint32_t)(uint8_t)(*pos++) - '0';
         if (digit >= 10) {
             /* Not really a digit */
             return false;
@@ -407,10 +375,10 @@ static bool match_samsung_exynos(const char* start, const char* end, struct cpui
     }
 
     /* Return parsed chipset */
-    *chipset = (struct cpuinfo_arm_chipset) {
+    *chipset = (struct cpuinfo_arm_chipset){
         .vendor = cpuinfo_arm_chipset_vendor_samsung,
         .series = cpuinfo_arm_chipset_series_samsung_exynos,
-        .model = model,
+        .model  = model,
     };
     return true;
 }
@@ -425,8 +393,7 @@ static bool match_samsung_exynos(const char* start, const char* end, struct cpui
  *
  * @returns true if signature matched, false otherwise.
  */
-static bool match_exynos(const char* start, const char* end, struct cpuinfo_arm_chipset *chipset)
-{
+static bool match_exynos(const char *start, const char *end, struct cpuinfo_arm_chipset *chipset) {
     /* Expect exactly 10 symbols: "exynos" (6 symbols) + 4-digit model number */
     if (start + 10 != end) {
         return false;
@@ -434,20 +401,20 @@ static bool match_exynos(const char* start, const char* end, struct cpuinfo_arm_
 
     /* Load first 4 bytes as little endian 32-bit word */
     const uint32_t expected_exyn = load_u32le(start);
-    if (expected_exyn != UINT32_C(0x6E797865) /* "nyxe" = reverse("exyn") */ ) {
+    if (expected_exyn != UINT32_C(0x6E797865) /* "nyxe" = reverse("exyn") */) {
         return false;
     }
 
     /* Load next 2 bytes as little endian 16-bit word */
     const uint16_t expected_os = load_u16le(start + 4);
-    if (expected_os != UINT16_C(0x736F) /* "so" = reverse("os") */ ) {
+    if (expected_os != UINT16_C(0x736F) /* "so" = reverse("os") */) {
         return false;
     }
 
     /* Check and parse 4-digit model number */
     uint32_t model = 0;
     for (uint32_t i = 6; i < 10; i++) {
-        const uint32_t digit = (uint32_t) (uint8_t) start[i] - '0';
+        const uint32_t digit = (uint32_t)(uint8_t)start[i] - '0';
         if (digit >= 10) {
             /* Not really a digit */
             return false;
@@ -456,10 +423,10 @@ static bool match_exynos(const char* start, const char* end, struct cpuinfo_arm_
     }
 
     /* Return parsed chipset. */
-    *chipset = (struct cpuinfo_arm_chipset) {
+    *chipset = (struct cpuinfo_arm_chipset){
         .vendor = cpuinfo_arm_chipset_vendor_samsung,
         .series = cpuinfo_arm_chipset_series_samsung_exynos,
-        .model = model,
+        .model  = model,
     };
     return true;
 }
@@ -476,8 +443,7 @@ static bool match_exynos(const char* start, const char* end, struct cpuinfo_arm_
  *
  * @returns true if signature matched, false otherwise.
  */
-static bool match_universal(const char* start, const char* end, struct cpuinfo_arm_chipset *chipset)
-{
+static bool match_universal(const char *start, const char *end, struct cpuinfo_arm_chipset *chipset) {
     /* Expect exactly 13 symbols: "universal" (9 symbols) + 4-digit model number */
     if (start + 13 != end) {
         return false;
@@ -488,12 +454,12 @@ static bool match_universal(const char* start, const char* end, struct cpuinfo_a
      * Blocks of 4 characters are loaded and compared as little-endian 32-bit word.
      * Case-insensitive characters are binary ORed with 0x20 to convert them to lowercase.
      */
-    const uint8_t expected_u = UINT8_C(0x20) | (uint8_t) start[0];
+    const uint8_t expected_u = UINT8_C(0x20) | (uint8_t)start[0];
     if (expected_u != UINT8_C(0x75) /* "u" */) {
         return false;
     }
     const uint32_t expected_nive = UINT32_C(0x20202020) | load_u32le(start + 1);
-    if (expected_nive != UINT32_C(0x6576696E) /* "evin" = reverse("nive") */ ) {
+    if (expected_nive != UINT32_C(0x6576696E) /* "evin" = reverse("nive") */) {
         return false;
     }
     const uint32_t expected_ersa = UINT32_C(0x20202020) | load_u32le(start + 5);
@@ -504,7 +470,7 @@ static bool match_universal(const char* start, const char* end, struct cpuinfo_a
     /* Validate and parse 4-digit model number */
     uint32_t model = 0;
     for (uint32_t i = 9; i < 13; i++) {
-        const uint32_t digit = (uint32_t) (uint8_t) start[i] - '0';
+        const uint32_t digit = (uint32_t)(uint8_t)start[i] - '0';
         if (digit >= 10) {
             /* Not really a digit */
             return false;
@@ -513,19 +479,18 @@ static bool match_universal(const char* start, const char* end, struct cpuinfo_a
     }
 
     /* Return parsed chipset. */
-    *chipset = (struct cpuinfo_arm_chipset) {
+    *chipset = (struct cpuinfo_arm_chipset){
         .vendor = cpuinfo_arm_chipset_vendor_samsung,
         .series = cpuinfo_arm_chipset_series_samsung_exynos,
-        .model = model,
+        .model  = model,
     };
     return true;
 }
 
-struct cpuinfo_arm_chipset cpuinfo_arm_linux_decode_chipset_from_proc_cpuinfo_hardware(const char *hardware)
-{
+struct cpuinfo_arm_chipset cpuinfo_arm_linux_decode_chipset_from_proc_cpuinfo_hardware(const char *hardware) {
     struct cpuinfo_arm_chipset chipset;
     const size_t hardware_length = strnlen(hardware, CPUINFO_HARDWARE_VALUE_MAX);
-    const char* hardware_end = hardware + hardware_length;
+    const char *hardware_end     = hardware + hardware_length;
 
     /* Check Samsung Exynos signature */
     if (match_samsung_exynos(hardware, hardware_end, &chipset)) {
@@ -537,35 +502,33 @@ struct cpuinfo_arm_chipset cpuinfo_arm_linux_decode_chipset_from_proc_cpuinfo_ha
         return chipset;
     }
 
-    return (struct cpuinfo_arm_chipset) {
+    return (struct cpuinfo_arm_chipset){
         .vendor = cpuinfo_arm_chipset_vendor_unknown,
         .series = cpuinfo_arm_chipset_series_unknown,
     };
 }
 
-struct cpuinfo_arm_chipset cpuinfo_arm_android_decode_chipset_from_ro_product_board(const char *ro_product_board)
-{
+struct cpuinfo_arm_chipset cpuinfo_arm_android_decode_chipset_from_ro_product_board(const char *ro_product_board) {
     struct cpuinfo_arm_chipset chipset;
-    const char* board = ro_product_board;
+    const char *board         = ro_product_board;
     const size_t board_length = strnlen(ro_product_board, CPUINFO_BUILD_PROP_VALUE_MAX);
-    const char* board_end = ro_product_board + board_length;
+    const char *board_end     = ro_product_board + board_length;
 
     /* Check universaXXXX (Samsung Exynos) signature */
     if (match_universal(board, board_end, &chipset)) {
         return chipset;
     }
 
-    return (struct cpuinfo_arm_chipset) {
+    return (struct cpuinfo_arm_chipset){
         .vendor = cpuinfo_arm_chipset_vendor_unknown,
         .series = cpuinfo_arm_chipset_series_unknown,
     };
 }
 
-struct cpuinfo_arm_chipset cpuinfo_arm_android_decode_chipset_from_ro_board_platform(const char *platform)
-{
+struct cpuinfo_arm_chipset cpuinfo_arm_android_decode_chipset_from_ro_board_platform(const char *platform) {
     struct cpuinfo_arm_chipset chipset;
     const size_t platform_length = strnlen(platform, CPUINFO_BUILD_PROP_VALUE_MAX);
-    const char* platform_end = platform + platform_length;
+    const char *platform_end     = platform + platform_length;
 
     /* Check exynosXXXX (Samsung Exynos) signature */
     if (match_exynos(platform, platform_end, &chipset)) {
@@ -573,44 +536,41 @@ struct cpuinfo_arm_chipset cpuinfo_arm_android_decode_chipset_from_ro_board_plat
     }
 
     /* None of the ro.board.platform signatures matched, indicate unknown chipset */
-    return (struct cpuinfo_arm_chipset) {
+    return (struct cpuinfo_arm_chipset){
         .vendor = cpuinfo_arm_chipset_vendor_unknown,
         .series = cpuinfo_arm_chipset_series_unknown,
     };
 }
 
-struct cpuinfo_arm_chipset cpuinfo_arm_android_decode_chipset_from_ro_mediatek_platform(const char *platform)
-{
+struct cpuinfo_arm_chipset cpuinfo_arm_android_decode_chipset_from_ro_mediatek_platform(const char *platform) {
     struct cpuinfo_arm_chipset chipset;
-    const char* platform_end = platform + strnlen(platform, CPUINFO_BUILD_PROP_VALUE_MAX);
+    const char *platform_end = platform + strnlen(platform, CPUINFO_BUILD_PROP_VALUE_MAX);
 
-    return (struct cpuinfo_arm_chipset) {
+    return (struct cpuinfo_arm_chipset){
         .vendor = cpuinfo_arm_chipset_vendor_unknown,
         .series = cpuinfo_arm_chipset_series_unknown,
     };
 }
 
-struct cpuinfo_arm_chipset cpuinfo_arm_android_decode_chipset_from_ro_arch(const char *arch)
-{
+struct cpuinfo_arm_chipset cpuinfo_arm_android_decode_chipset_from_ro_arch(const char *arch) {
     struct cpuinfo_arm_chipset chipset;
-    const char* arch_end = arch + strnlen(arch, CPUINFO_BUILD_PROP_VALUE_MAX);
+    const char *arch_end = arch + strnlen(arch, CPUINFO_BUILD_PROP_VALUE_MAX);
 
     /* Check Samsung exynosXXXX signature */
     if (match_exynos(arch, arch_end, &chipset)) {
         return chipset;
     }
 
-    return (struct cpuinfo_arm_chipset) {
+    return (struct cpuinfo_arm_chipset){
         .vendor = cpuinfo_arm_chipset_vendor_unknown,
         .series = cpuinfo_arm_chipset_series_unknown,
     };
 }
 
-struct cpuinfo_arm_chipset cpuinfo_arm_android_decode_chipset_from_ro_chipname(const char *chipname)
-{
+struct cpuinfo_arm_chipset cpuinfo_arm_android_decode_chipset_from_ro_chipname(const char *chipname) {
     struct cpuinfo_arm_chipset chipset;
     const size_t chipname_length = strnlen(chipname, CPUINFO_BUILD_PROP_VALUE_MAX);
-    const char* chipname_end = chipname + chipname_length;
+    const char *chipname_end     = chipname + chipname_length;
 
     /* Check exynosXXXX (Samsung Exynos) signature */
     if (match_exynos(chipname, chipname_end, &chipset)) {
@@ -622,15 +582,14 @@ struct cpuinfo_arm_chipset cpuinfo_arm_android_decode_chipset_from_ro_chipname(c
         return chipset;
     }
 
-    return (struct cpuinfo_arm_chipset) {
+    return (struct cpuinfo_arm_chipset){
         .vendor = cpuinfo_arm_chipset_vendor_unknown,
         .series = cpuinfo_arm_chipset_series_unknown,
     };
 }
 
 /* Only detect Samsung Exynos chipsets now*/
-struct cpuinfo_arm_chipset cpuinfo_arm_android_decode_chipset(const struct cpuinfo_android_properties *properties)
-{
+struct cpuinfo_arm_chipset cpuinfo_arm_android_decode_chipset(const struct cpuinfo_android_properties *properties) {
     struct cpuinfo_arm_chipset chipset = {
         .vendor = cpuinfo_arm_chipset_vendor_unknown,
         .series = cpuinfo_arm_chipset_series_unknown,

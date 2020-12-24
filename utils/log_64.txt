@@ -28,3 +28,6 @@ ro_hardware_chipname: SM8150
 vender 0, 0, 0
 >> support fp16
 
+CpuUtils::CpuSupportFp16, OSX and arm64, hw.cpufamily = 1b588bb3, fp16arith = 1.
+>> support fp16
+

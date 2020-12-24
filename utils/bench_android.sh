@@ -14,8 +14,7 @@ function run() {
     pushd build${sys}
     cmake .. \
         -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK_15c/build/cmake/android.toolchain.cmake \
-        -DANDROID_ABI=${ABI} \
-        -DBUILD_FOR_ANDROID_COMMAND=true
+        -DANDROID_ABI=${ABI}
     make
     popd
 
