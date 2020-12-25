@@ -1,31 +1,5 @@
-proc_cpuinfo_hardware: Hisilicon Kirin980
-ro_product_board: ELE
-ro_board_platform: kirin980
-ro_mediatek_platform: 
-ro_arch: 
-ro_chipname: 
-ro_hardware_chipname: 
-vender 0, 0, 0
->> support fp16
-
-proc_cpuinfo_hardware: Qualcomm Technologies, Inc MSM8998
-ro_product_board: msm8998
-ro_board_platform: msm8998
-ro_mediatek_platform: 
-ro_arch: 
-ro_chipname: 
-ro_hardware_chipname: MSM8998
-vender 0, 0, 0
->> do not support fp16
-
-proc_cpuinfo_hardware: Qualcomm Technologies, Inc SM8150
-ro_product_board: msmnile
-ro_board_platform: msmnile
-ro_mediatek_platform: 
-ro_arch: 
-ro_chipname: 
-ro_hardware_chipname: SM8150
-vender 0, 0, 0
+CpuUtils::CpuSupportFp16, ANDROID, vendor = 0, series = 0, model = 0.
+CpuUtils::CpuSupportFp16, ANDROID and arm64, hwcap = 119fff, fp16arith = 1.
 >> support fp16
 
 CpuUtils::CpuSupportFp16, OSX and arm64, hw.cpufamily = 1b588bb3, fp16arith = 1.
