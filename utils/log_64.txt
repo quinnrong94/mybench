@@ -5,3 +5,4 @@ CpuUtils::CpuSupportFp16, ANDROID and arm64, hwcap = 119fff, fp16arith = 1.
 CpuUtils::CpuSupportFp16, OSX and arm64, hw.cpufamily = 1b588bb3, fp16arith = 1.
 >> support fp16
 
+/system/bin/sh: ./cpu_test_64: not executable: 64-bit ELF file
