@@ -1,6 +1,10 @@
 #include <chrono>
 #include <iostream>
 
+#ifdef x86
+#include <immintrin.h>
+#endif
+
 using namespace std::chrono;
 
 int main() {
@@ -12,7 +16,9 @@ int main() {
         y[i] = x[i];
     }
 
-    // _MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
+#if defined(FZ) && defined(x86)
+    _MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
+#endif
 
     high_resolution_clock::time_point t0 = high_resolution_clock::now();
     for (int j = 0; j < 9000000; j++) {
@@ -34,7 +40,7 @@ int main() {
         std::cout << y[i] << std::endl;
     }
 
-    std::cout << duration_cast<microseconds>(t1 - t0).count() / 1000.0 << " ms" << std::endl;
+    printf("%.3f ms\n", duration_cast<microseconds>(t1 - t0).count() / 1000.0);
 
     return 0;
 }
