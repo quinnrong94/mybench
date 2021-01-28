@@ -6,3 +6,17 @@ CpuUtils::CpuSupportFp16, ANDROID, vendor = 0, series = 0, model = 0.
 CpuUtils::CpuSupportFp16, ANDROID and arm32, midr = 4100c090, fp16arith = 0.
 >> do not support fp16
 
+WARNING: linker: ./cpu_test_32: unused DT entry: type 0x6ffffffe arg 0x127c
+WARNING: linker: ./cpu_test_32: unused DT entry: type 0x6fffffff arg 0x2
+CpuUtils::CpuSupportFp16, ANDROID, vendor = 0, series = 0, model = 0.
+CpuUtils::CpuSupportFp16, ANDROID and arm32, midr = 4100c070, fp16arith = 0.
+>> do not support fp16
+
+CpuUtils::CpuSupportFp16, ANDROID, vendor = 0, series = 0, model = 0.
+CpuUtils::CpuSupportFp16, ANDROID and arm32, midr = 51008020, fp16arith = 1.
+>> support fp16
+
+CpuUtils::CpuSupportFp16, ANDROID, vendor = 0, series = 0, model = 0.
+CpuUtils::CpuSupportFp16, ANDROID and arm32, midr = 51008040, fp16arith = 1.
+>> support fp16
+

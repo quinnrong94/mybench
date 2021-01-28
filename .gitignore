@@ -1,2 +1,6 @@
-*build*
+*build_normal
+*build_denormal
+*build32
+*build64
+*build
 *bench
