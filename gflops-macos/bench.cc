@@ -6,7 +6,7 @@
 #define LOOP (1e9)
 
 extern "C" {
-    void FmlaLoop12(int);
+    void FmlaLoop16(int);
 }
 
 static double get_time(struct timespec *start,
@@ -23,11 +23,11 @@ void *run(void *arg) {
     int loop = LOOP;
 
     clock_gettime(CLOCK_MONOTONIC_RAW, &start);
-    FmlaLoop12(loop);
+    FmlaLoop16(loop);
     clock_gettime(CLOCK_MONOTONIC_RAW, &end);
 
     time_used     = get_time(&start, &end);     // seconds
-    int op_floats = 12 * 4 * 2;                 // 12 mla_op (1 mla_op = 4 mul_op + 4 add_op)
+    int op_floats = 16 * 4 * 2;                 // 16 mla_op (1 mla_op = 4 mul_op + 4 add_op)
     printf("thread %2d, loop %12d: %.6lf GFLOPS\r\n", id, loop, loop * 1.0 * op_floats * 1e-9 / time_used);
 
     return NULL;

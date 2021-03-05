@@ -3,13 +3,13 @@
 .text
 .align 5
 #ifdef __APPLE__
-.global _FmlaLoop12
+.global _FmlaLoop16
 
-_FmlaLoop12:
+_FmlaLoop16:
 #else
-.global FmlaLoop12
+.global FmlaLoop16
 
-FmlaLoop12:
+FmlaLoop16:
 #endif
 .loop1:
     fmla v0.4s, v0.4s, v0.4s
@@ -27,6 +27,11 @@ FmlaLoop12:
     fmla v10.4s, v10.4s, v10.4s
     fmla v11.4s, v11.4s, v11.4s
 
+    fmla v12.4s, v12.4s, v12.4s
+    fmla v13.4s, v13.4s, v13.4s
+    fmla v14.4s, v14.4s, v14.4s
+    fmla v15.4s, v15.4s, v15.4s
+
     subs x0, x0, #1
     bne .loop1
     ret
@@ -37,13 +42,13 @@ FmlaLoop12:
 .text
 .align 5
 #ifdef __APPLE__
-.global _FmlaLoop12
+.global _FmlaLoop16
 
-_FmlaLoop12:
+_FmlaLoop16:
 #else
-.global FmlaLoop12
+.global FmlaLoop16
 
-FmlaLoop12:
+FmlaLoop16:
 #endif
 push {lr}
 
@@ -62,6 +67,11 @@ push {lr}
     vmla.f32 q9, q9, q9
     vmla.f32 q10, q10, q10
     vmla.f32 q11, q11, q11
+
+    vmla.f32 q12, q12, q12
+    vmla.f32 q13, q13, q13
+    vmla.f32 q14, q14, q14
+    vmla.f32 q15, q15, q15
 
     subs r0, r0, #1
     bne .loop1

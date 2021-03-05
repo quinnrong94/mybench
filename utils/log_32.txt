@@ -20,3 +20,7 @@ CpuUtils::CpuSupportFp16, ANDROID, vendor = 0, series = 0, model = 0.
 CpuUtils::CpuSupportFp16, ANDROID and arm32, midr = 51008040, fp16arith = 1.
 >> support fp16
 
+CpuUtils::CpuSupportFp16, ANDROID, vendor = 0, series = 0, model = 0.
+CpuUtils::CpuSupportFp16, ANDROID and arm32, midr = 4100d030, fp16arith = 0.
+>> do not support fp16
+
