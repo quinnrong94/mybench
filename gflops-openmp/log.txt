@@ -1,0 +1,30 @@
+
+>> omp_set_num_threads(1)
+omp_get_num_procs 8
+omp_get_max_threads 1
+omp_get_thread_num 0
+loop   1000000000: 99.453012 GFLOPS
+
+>> omp_set_num_threads(2)
+omp_get_num_procs 8
+omp_get_max_threads 2
+omp_get_thread_num 0
+loop   1000000000: 197.518900 GFLOPS
+
+>> omp_set_num_threads(4)
+omp_get_num_procs 8
+omp_get_max_threads 4
+omp_get_thread_num 0
+loop   1000000000: 380.143210 GFLOPS
+
+>> omp_set_num_threads(8)
+omp_get_num_procs 8
+omp_get_max_threads 8
+omp_get_thread_num 0
+loop   1000000000: 493.792869 GFLOPS
+
+>> omp_set_num_threads(16)
+omp_get_num_procs 8
+omp_get_max_threads 16
+omp_get_thread_num 0
+loop   1000000000: 493.630527 GFLOPS
