@@ -3,4 +3,4 @@
 *build32
 *build64
 *build
-*bench
+*/bench

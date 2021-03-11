@@ -36,6 +36,7 @@ double get_bandwidth(unsigned long elapse, unsigned long volume);
 double get_clock_elapse();
 double get_loop_elapse();
 
+void bench_bandwidth_mem();
 void bench_cache_latency();
 
 #endif
