@@ -1,6 +1,8 @@
 #!/bin/bash
 
-/opt/homebrew/opt/llvm/bin/clang++ bench.cc FMLA.S \
+clang++ bench.cc FMLA.S \
     -o bench \
-    -fopenmp \
+    -Xpreprocessor -fopenmp \
+    -I/opt/homebrew/opt/libomp/include \
+    -lomp \
     -L/opt/homebrew/opt/libomp/lib
