@@ -61,7 +61,7 @@ private:
 HRESULT InitDeviceAndCS();
 HRESULT InitBuffer(UINT count, UINT LOOP_NUM);
 HRESULT PerfKernel(const std::vector<UINT> &grid, DXTimer &timer);
-void GetReport(UINT ThreadCount, UINT LOOP_NUM, float time_in_ms);
+void GetReport(UINT ThreadCount, UINT LOOP_NUM, DXTimer &timer);
 
 HRESULT Run(UINT ThreadCount) {
     HRESULT hr = S_OK;
@@ -79,7 +79,7 @@ HRESULT Run(UINT ThreadCount) {
     hr = PerfKernel(grid, timer);
     HR_CHECK(hr, "PerfKernel");
 
-    GetReport(ThreadCount, LOOP_NUM, timer.TimeEclapsed());
+    GetReport(ThreadCount, LOOP_NUM, timer);
 
     return hr;
 }
@@ -473,14 +473,15 @@ HRESULT dispatchKernel(const std::vector<ID3D11ShaderResourceView*> &srvs,
     return hr;
 }
 
-void GetReport(UINT ThreadCount, UINT LOOP_NUM, float time_in_ms) {
+void GetReport(UINT ThreadCount, UINT LOOP_NUM, DXTimer &timer) {
     HRESULT hr = S_OK;
     hr = readBuffer(out_buffer.get(), out.get(), ThreadCount * sizeof(float));
     // for (int i = 0; i < 10; ++i) {
     //     printf("[%d] %f\n", i, out.get()[i]);
     // }
 
-    double gflops = 1.0 * ThreadCount * LOOP_NUM * 16 * 2 / time_in_ms / 1e6;
+    float time_in_ms = timer.TimeEclapsed();
+    double gflops    = 1.0 * ThreadCount * LOOP_NUM * 16 * 2 / time_in_ms / 1e6;
     printf(">> thread_count: %5d, time: %7.4f ms, gflops: %8.2f [Gemm Kernel]\n", ThreadCount, time_in_ms, gflops);
 }
 
