@@ -4,3 +4,5 @@
 *build64
 *build
 */bench
+*/bench_fp32
+*/bench_fp16
